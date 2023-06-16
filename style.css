@@ -8,8 +8,6 @@
     justify-content: space-around;
     align-items: center;
 }
-
-
 .new-form {
     background-color: red;
     width: 200px;
@@ -25,7 +23,7 @@
     width: 200px;
     background-color: pink;
     margin-bottom: 50px;
-}
+}a
 .test {
     background-color: red;
     display: flex;

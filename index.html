@@ -6,17 +6,27 @@
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
     <title>Library</title>
+    <script src="https://kit.fontawesome.com/96f630ca48.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 </head>
-<body">
+<body>
+    <header>
+        <a href="#" id="header">
+            <i class="fa-solid fa-book"></i>
+            <h1>library</h1>
+        </a>
+    </header>
 
-    <button class="new-book">New Book</button>
-
-    <form id="book-form" style="display: none;">
-        <input id="author-input" type="text" placeholder="author :">
-        <input id="title-input" type="text" placeholder="title :">
-        <input id="number-input" type="text" placeholder="num of pages :">
-        <input class="submit" type="submit" value="details submit">
-    </form>
+    <main>
+        <button class="new-book">+ Add Book</button>
+        <form id="book-form" style="display: none;">
+            <input id="author-input" type="text" placeholder="Author :" required>
+            <input id="title-input" type="text" placeholder="Title :" required>
+            <input id="number-input" type="number" placeholder="Pages :" required>
+            <input id="submit" type="submit" value="Submit">
+        </form>
+        <div class="books-container"></div> 
+    </main>
 
 </body>
 </html>

@@ -1,12 +1,20 @@
-let newBookButton = document.querySelector(".new-book");
-let bookForm = document.querySelector("#book-form");
-let authorInput = document.querySelector("#author-input");
-let titleInput = document.querySelector("#title-input");
-let numOfPagesInput = document.querySelector("#number-input");
-let booksContainer = document.querySelector(".books-container");
+// selecting elements :
+const newBookButton = document.querySelector(".new-book");
+const bookForm = document.querySelector("#book-form");
+const authorInput = document.querySelector("#author-input");
+const titleInput = document.querySelector("#title-input");
+const numOfPagesInput = document.querySelector("#number-input");
+const booksContainer = document.querySelector(".books-container");
+const checkboxStatus = document.querySelector("#checkbox");
 
 let myLibrary = [];
 let myObj = {};
+let storeCheckStatus = "";
+
+// display the form :
+newBookButton.addEventListener("click", () => {
+  bookForm.style.cssText = "display; flex";
+});
 
 // the constructor of myLibrary objects :
 function Book(author, title, numberOfPages) {
@@ -14,19 +22,16 @@ function Book(author, title, numberOfPages) {
   this.title = title;
   this.numberOfPages = numberOfPages;
   this.readStatus = function () {
+    // toggle the readStatusButton output if its clicked :
     if (this.textContent === "Read") {
-      this.textContent = "No Read";
+      this.textContent = "Not Read";
       this.style.cssText = "background-color: red";
-    } else if (this.textContent === "No Read") {
+    } else if (this.textContent === "Not Read") {
       this.textContent = "Read";
       this.style.cssText = "background-color: greenyellow";
     }
   };
 }
-
-newBookButton.addEventListener("click", () => {
-  bookForm.style.cssText = "display; block";
-});
 
 function addBookToLibrary() {
   // book form event :
@@ -46,26 +51,15 @@ function addBookToLibrary() {
 
 addBookToLibrary();
 
-// a func to remove existing book elements :
-function removeExistingBooks() {
-  let removeBooks = document.querySelectorAll(".show-book");
-  removeBooks.forEach((book) => {
-    book.remove();
-  });
-}
-
 function displayEachBook() {
-  // calling this func :
-  removeExistingBooks();
-
   for (let book in myLibrary) {
     // creating new elements :
-    let showBook = document.createElement("div");
-    let authorOutput = document.createElement("div");
-    let titleOutput = document.createElement("div");
-    let numberOfPagesOutput = document.createElement("div");
-    let removeBookButton = document.createElement("button");
-    let readStatusButton = document.createElement("button");
+    const showBook = document.createElement("div");
+    const authorOutput = document.createElement("div");
+    const titleOutput = document.createElement("div");
+    const numberOfPagesOutput = document.createElement("div");
+    const removeBookButton = document.createElement("button");
+    const readStatusButton = document.createElement("button");
 
     //  setting classlist of the new elements :
     showBook.classList = "show-book";
@@ -92,14 +86,33 @@ function displayEachBook() {
 
     // event button to remove the current book :
     removeBookButton.addEventListener("click", () => {
-      showBook.remove(); // removing the element.
-      myLibrary.splice(book, 1); // removing the "this" object from the Library array.
-      // delete myLibrary[book];
+      showBook.remove(); // removes the current element.
+      myLibrary.splice(book, 1); // removes the current object from myLibrary array.
+      // delete myLibrary[book]; // returns empty!
     });
-
-    // event button to toggle read status :
-    readStatusButton.addEventListener("click", myLibrary[book].readStatus);
+    // event button to toggle readStatusButton :
+    readStatusButton.addEventListener("click", myObj.readStatus);
+    // fix the iterating of the same book in myLibrary :
+    myLibrary.splice(book, 1);
+    // changing the output of the readStatusButton if its checked or not ;
+    if (storeCheckStatus === "checked") {
+      readStatusButton.textContent = "Read";
+      readStatusButton.style.cssText = "background-color: greenyellow";
+    } else {
+      readStatusButton.textContent = "Not Read";
+      readStatusButton.style.cssText = "background-color: red";
+    }
   }
 }
 
 displayEachBook();
+
+// event button to store the checkbox status :
+checkboxStatus.addEventListener("click", checkBoxStatusFunc);
+function checkBoxStatusFunc() {
+  if (checkbox.checked) {
+    storeCheckStatus = "checked";
+  } else {
+    storeCheckStatus = "unchecked";
+  }
+}

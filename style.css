@@ -38,7 +38,6 @@ header>a:hover {
 
     /* form styles : */
 main {
-    /* background-color: red; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,7 +62,7 @@ main {
 }
 #book-form {
     width: 220px;       
-    height: 200px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -89,7 +88,16 @@ form>#submit {
 } 
 form>#submit:hover {
     background-color: rgb(9, 255, 0);
-
+}
+label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
 }
 
 /* new book styles */

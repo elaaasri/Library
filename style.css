@@ -4,24 +4,24 @@
   box-sizing: border-box;
 }
 body {
-  background-color: #e7e5e4;
+  background-color: #807e7e;
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 /* header styles : */
 header {
-  background-color: white;
+  background-color: rgb(36, 32, 32);
   min-height: 100px;
   display: flex;
   align-items: center;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  box-shadow: 0 10px 15px -3px rgba(255, 255, 255,0.3), 0 4px 6px -4px rgba(255, 255, 255, 0.2);
   font-family: "Poppins", sans-serif;
 }
 header > a {
-  color: black;
+  color: white;
   text-decoration: none;
-  display: flex;
+  display: flex;  
   justify-content: center;
   align-items: center;
   gap: 15px;
@@ -32,7 +32,7 @@ header > a {
 }
 header > a:hover {
   transform: scale(1.1);
-  color: #172554;
+  color: #dfe0e3;
 }
 .fa-book {
   font-size: 30px;
@@ -57,9 +57,10 @@ main {
   transition: background-color 0.4s ease;
   border-radius: 15px;
   font-family: "Poppins", sans-serif;
+  color: white;
 }
 .new-book:hover {
-  background-color: #cfcecc;
+  background-color: #322f2f;
 }
 #book-form {
   width: 220px;
@@ -153,9 +154,10 @@ input {
   font-size: 11px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
+  color: white;
 }
 .fa-github {
-  color: black;
+  color: white;
   font-size: 20px;
   transition: transform 0.5s ease-in-out;
 }

@@ -23,22 +23,16 @@ class Book {
     this.numberOfPages = numberOfPages;
     this.checkbox = checkbox.checked;
   }
-
-  // readStatusCheck() {
-  //   console.log(checkboxStatus.checked);
-  //   if (checkboxStatus.checked) {
-  //     console.log("checked");
-  //   } else {
-  //     console.log("not checked");
-  //   }
-  // }
-  // checkBoxStatusFunc() {
-  //   if (checkbox.checked) {
-  //     storeCheckStatus = "checked";
-  //   } else {
-  //     storeCheckStatus = "unchecked";
-  //   }
-  // }
+  // toggle the readStatusButton output if its clicked :
+  toggleReadButton() {
+    if (this.textContent === "Read") {
+      this.textContent = "Not Read";
+      this.style.cssText = "background-color: red";
+    } else if (this.textContent === "Not Read") {
+      this.textContent = "Read";
+      this.style.cssText = "background-color: greenyellow";
+    }
+  }
 }
 
 function addBookToLibrary() {
@@ -68,12 +62,11 @@ function showBook() {
   const numberOfPagesOutput = document.createElement("div");
   const removeBookButton = document.createElement("button");
   readStatusButton = document.createElement("button");
-
   // setting classlist of the new elements :
   showBook.classList = "show-book";
   authorOutput.classList = "author-output";
   titleOutput.classList = "title-output";
-  numberOfPagesOutput.classList = "author-output";
+  numberOfPagesOutput.classList = "numOfPages-output";
   removeBookButton.classList = "remove-button";
   readStatusButton.classList = "read-button";
   // adding text content :
@@ -93,7 +86,7 @@ function showBook() {
   // calling this func :
   checkboxStatusCheck();
   // event button to toggle read button :
-  readStatusButton.addEventListener("click", toggleReadButton);
+  readStatusButton.addEventListener("click", book.toggleReadButton);
 }
 
 // func to check the box status :
@@ -107,11 +100,6 @@ function checkboxStatusCheck() {
   }
 }
 
-// func to toggle read button :
-function toggleReadButton() {
-  console.log("toggle");
-  console.log(readStatusButton);
-}
 // function displayEachBook() {
 //   for (let book in myLibrary) {
 //     // creating new elements :

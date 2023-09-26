@@ -16,6 +16,7 @@ newBookButton.addEventListener("click", () => {
   bookForm.style.cssText = "display; flex";
 });
 
+// book class :
 class Book {
   constructor(author, title, numberOfPages) {
     this.author = author;
@@ -23,15 +24,21 @@ class Book {
     this.numberOfPages = numberOfPages;
     this.checkbox = checkbox.checked;
   }
-  // toggle the readStatusButton output if its clicked :
+  // toggle the readStatusButton if its clicked :
   toggleReadButton() {
-    if (this.textContent === "Read") {
-      this.textContent = "Not Read";
-      this.style.cssText = "background-color: red";
-    } else if (this.textContent === "Not Read") {
-      this.textContent = "Read";
-      this.style.cssText = "background-color: greenyellow";
+    let readStatusButton = this;
+    if (readStatusButton.textContent === "Read") {
+      readStatusButton.textContent = "Not Read";
+      readStatusButton.style.cssText = "background-color: red";
+    } else {
+      readStatusButton.textContent = "Read";
+      readStatusButton.style.cssText = "background-color: greenyellow";
     }
+  }
+  // func to remove the current book :
+  deleteBook() {
+    let bookDiv = this;
+    bookDiv.remove();
   }
 }
 
@@ -56,14 +63,14 @@ bookForm.addEventListener("submit", (event) => {
 function showBook() {
   book = addBookToLibrary().newBook;
   // creating new elements :
-  const showBook = document.createElement("div");
+  const bookDiv = document.createElement("div");
   const authorOutput = document.createElement("div");
   const titleOutput = document.createElement("div");
   const numberOfPagesOutput = document.createElement("div");
   const removeBookButton = document.createElement("button");
   readStatusButton = document.createElement("button");
   // setting classlist of the new elements :
-  showBook.classList = "show-book";
+  bookDiv.classList = "show-book";
   authorOutput.classList = "author-output";
   titleOutput.classList = "title-output";
   numberOfPagesOutput.classList = "numOfPages-output";
@@ -75,18 +82,19 @@ function showBook() {
   numberOfPagesOutput.textContent = book.numberOfPages;
   // elements textcontent :
   removeBookButton.textContent = "Remove";
-  // readStatusButton.textContent = "Read";
   // appending elements :
-  booksContainer.appendChild(showBook);
-  showBook.appendChild(authorOutput);
-  showBook.appendChild(titleOutput);
-  showBook.appendChild(numberOfPagesOutput);
-  showBook.appendChild(removeBookButton);
-  showBook.appendChild(readStatusButton);
+  booksContainer.appendChild(bookDiv);
+  bookDiv.appendChild(authorOutput);
+  bookDiv.appendChild(titleOutput);
+  bookDiv.appendChild(numberOfPagesOutput);
+  bookDiv.appendChild(removeBookButton);
+  bookDiv.appendChild(readStatusButton);
   // calling this func :
   checkboxStatusCheck();
   // event button to toggle read button :
   readStatusButton.addEventListener("click", book.toggleReadButton);
+  // event button to remove the current book :
+  removeBookButton.addEventListener("click", book.deleteBook.bind(bookDiv));
 }
 
 // func to check the box status :
@@ -99,70 +107,3 @@ function checkboxStatusCheck() {
     readStatusButton.style.cssText = "background-color: red";
   }
 }
-
-// function displayEachBook() {
-//   for (let book in myLibrary) {
-//     // creating new elements :
-//     const showBook = document.createElement("div");
-//     const authorOutput = document.createElement("div");
-//     const titleOutput = document.createElement("div");
-//     const numberOfPagesOutput = document.createElement("div");
-//     const removeBookButton = document.createElement("button");
-//     const readStatusButton = document.createElement("button");
-
-//     //  setting classlist of the new elements :
-//     showBook.classList = "show-book";
-//     authorOutput.classList = "author-output";
-//     titleOutput.classList = "title-output";
-//     numberOfPagesOutput.classList = "author-output";
-//     removeBookButton.classList = "remove-button";
-//     readStatusButton.classList = "read-button";
-
-//     //  adding text content :
-//     authorOutput.textContent = myLibrary[book].author;
-//     titleOutput.textContent = myLibrary[book].title;
-//     numberOfPagesOutput.textContent = myLibrary[book].numberOfPages;
-//     removeBookButton.textContent = "Remove";
-//     readStatusButton.textContent = "Read";
-
-//     // appending elements :
-//     booksContainer.appendChild(showBook);
-//     showBook.appendChild(authorOutput);
-//     showBook.appendChild(titleOutput);
-//     showBook.appendChild(numberOfPagesOutput);
-//     showBook.appendChild(removeBookButton);
-//     showBook.appendChild(readStatusButton);
-
-//     // event button to remove the current book :
-//     removeBookButton.addEventListener("click", () => {
-//       showBook.remove(); // removes the current element.
-//       myLibrary.splice(book, 1); // removes the current object from myLibrary array.
-//       // delete myLibrary[book]; // returns empty!
-//     });
-//     console.log(myLibrary);
-//     // event button to toggle readStatusButton :
-//     readStatusButton.addEventListener("click", myObj.readStatus);
-//     // fix the iterating of the same book in myLibrary :
-//     myLibrary.splice(book, 1);
-//     // changing the output of the readStatusButton if its checked or not ;
-//     if (storeCheckStatus === "checked") {
-//       readStatusButton.textContent = "Read";
-//       readStatusButton.style.cssText = "background-color: greenyellow";
-//     } else {
-//       readStatusButton.textContent = "Not Read";
-//       readStatusButton.style.cssText = "background-color: red";
-//     }
-//   }
-// }
-
-// displayEachBook();
-
-// // event button to store the checkbox status :
-// checkboxStatus.addEventListener("click", checkBoxStatusFunc);
-// function checkBoxStatusFunc() {
-//   if (checkbox.checked) {
-//     storeCheckStatus = "checked";
-//   } else {
-//     storeCheckStatus = "unchecked";
-//   }
-// }

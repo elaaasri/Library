@@ -8,7 +8,8 @@ const booksContainer = document.querySelector(".books-container");
 const checkbox = document.querySelector("#checkbox");
 
 let myLibrary = [];
-let storeCheckStatus = "";
+let readStatusButton;
+let book;
 
 // display the form :
 newBookButton.addEventListener("click", () => {
@@ -22,6 +23,7 @@ class Book {
     this.numberOfPages = numberOfPages;
     this.checkbox = checkbox.checked;
   }
+
   // readStatusCheck() {
   //   console.log(checkboxStatus.checked);
   //   if (checkboxStatus.checked) {
@@ -58,14 +60,15 @@ bookForm.addEventListener("submit", (event) => {
 
 // func to show books :
 function showBook() {
-  let book = addBookToLibrary().newBook;
+  book = addBookToLibrary().newBook;
   // creating new elements :
   const showBook = document.createElement("div");
   const authorOutput = document.createElement("div");
   const titleOutput = document.createElement("div");
   const numberOfPagesOutput = document.createElement("div");
   const removeBookButton = document.createElement("button");
-  const readStatusButton = document.createElement("button");
+  readStatusButton = document.createElement("button");
+
   // setting classlist of the new elements :
   showBook.classList = "show-book";
   authorOutput.classList = "author-output";
@@ -79,7 +82,7 @@ function showBook() {
   numberOfPagesOutput.textContent = book.numberOfPages;
   // elements textcontent :
   removeBookButton.textContent = "Remove";
-  readStatusButton.textContent = "Read";
+  // readStatusButton.textContent = "Read";
   // appending elements :
   booksContainer.appendChild(showBook);
   showBook.appendChild(authorOutput);
@@ -87,33 +90,28 @@ function showBook() {
   showBook.appendChild(numberOfPagesOutput);
   showBook.appendChild(removeBookButton);
   showBook.appendChild(readStatusButton);
-  // readStatusButton.addEventListener("click", book.readStatus);
-  function checkboxStatusCheck() {
-    if (book.checkbox === true) {
-      console.log("checked");
-      readStatusButton.style.cssText = "background-color: greenyellow";
-    } else {
-      console.log("not checked");
-    }
-  }
+  // calling this func :
   checkboxStatusCheck();
+  // event button to toggle read button :
+  readStatusButton.addEventListener("click", toggleReadButton);
 }
 
-// console.log(showBook().readStatusButton);
+// func to check the box status :
+function checkboxStatusCheck() {
+  if (book.checkbox === true) {
+    readStatusButton.textContent = "Read";
+    readStatusButton.style.cssText = "background-color: greenyellow";
+  } else {
+    readStatusButton.textContent = "Not Read";
+    readStatusButton.style.cssText = "background-color: red";
+  }
+}
 
-// function checkboxStatusCheck() {
-//   let book = addBookToLibrary().newBook;
-//   let readButton = document.querySelector(".read-button");
-//   console.log(readButton);
-//   if (book.checkbox === true) {
-//     console.log("checked");
-//     // readStatusButton.textContent = "Read";
-//     readButton.style.cssText = "background-color: greenyellow";
-//   } else {
-//     console.log("not checked");
-//   }
-// }
-
+// func to toggle read button :
+function toggleReadButton() {
+  console.log("toggle");
+  console.log(readStatusButton);
+}
 // function displayEachBook() {
 //   for (let book in myLibrary) {
 //     // creating new elements :

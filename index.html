@@ -22,11 +22,11 @@
         <i class="fa-solid fa-book"></i>
         <h1>library</h1>
       </a>
+      <button id="log-in-button">Log in</button>
     </header>
 
     <main>
       <button class="new-book">+ Add Book</button>
-
       <form id="book-form" style="display: none">
         <input id="author-input" type="text" placeholder="Author :" required />
         <input id="title-input" type="text" placeholder="Title :" required />
@@ -39,7 +39,54 @@
       </form>
       <div class="books-container"></div>
     </main>
-
+    <!-- overlay popup -->
+    <!-- <div class="overlay" id="popup-overlay"></div> -->
+    <div class="popup" id="popup-window">
+      <div id="logo-container">
+        <img id="logo-image" src="./imgs/zbe.jpg" />
+        <p id="logo-para">Get Started!</p>
+      </div>
+      <!-- log in form -->
+      <form id="log-in-form" method="dialog">
+        <div id="login-header-form">
+          <h2>Welcome To The Library.</h2>
+          <p>create an account</p>
+        </div>
+        <div id="login-main-form">
+          <div id="email-container">
+            <label for="email">Enter Email :</label>
+            <input type="email" id="email" name="email" />
+          </div>
+          <div id="country-container">
+            <label for="country">Select Country : </label>
+            <select id="country" name="country">
+              <option value="Maroc">Maroc</option>
+              <option value="Egypt">Egypt</option>
+              <option value="Spain">Spain</option>
+            </select>
+          </div>
+          <div id="zip-container">
+            <label for="zip">Zip Code :</label>
+            <input type="text" id="zip" name="zip" />
+          </div>
+          <div id="password-container">
+            <label for="password">Enter Password : </label>
+            <input type="password" id="password" name="password" />
+          </div>
+          <div id="password-confirm-container">
+            <label for="password-confirm">Confirm Password : </label>
+            <input
+              type="password"
+              id="password-confirm"
+              name="password-confirm"
+            />
+          </div>
+        </div>
+        <div id="login-form-footer">
+          <input id="login-form-submit" type="submit" value="Log in" />
+        </div>
+      </form>
+    </div>
     <footer class="footer">
       Copyright © &nbsp;
       <p>elaaasri</p>

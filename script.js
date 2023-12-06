@@ -107,13 +107,12 @@ function checkboxStatusCheck() {
     readStatusButton.style.cssText = "background-color: red";
   }
 }
-
 // ###################################
-const popupOverlay = document.getElementById("popup-overlay");
-const popupWindow = document.getElementById("popup-form");
-const logInButton = document.getElementById("log-in-button");
-const showForm = function () {
-  popupOverlay.style.display = "flex";
-  popupWindow.style.display = "flex";
-};
-logInButton.addEventListener("click", showForm);
+// const popupOverlay = document.getElementById("popup-overlay");
+// const popupWindow = document.getElementById("popup-form");
+// const logInButton = document.getElementById("log-in-button");
+// const showForm = function () {
+//   popupOverlay.style.display = "flex";
+//   popupWindow.style.display = "flex";
+// };
+// logInButton.addEventListener("click", showForm);

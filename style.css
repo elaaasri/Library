@@ -102,12 +102,13 @@ main {
   color: white;
   font-family: "Poppins", sans-serif;
   letter-spacing: 5px;
+  font-weight: bold;
 }
 #login-header-form {
-  background-color: yellow;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  text-align: center;
+}
+#login-header-form > h2 {
 }
 #login-header-form > p {
   font-size: 12px;
@@ -116,8 +117,30 @@ main {
 #login-main-form {
   display: flex;
   flex-direction: column;
-  /* background-color: blue; */
-  height: 50%;
+  gap: 4px;
+}
+#fullName-container,
+#email-container,
+#zip-container,
+#password-container,
+#password-confirm-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+#country-container {
+  display: flex;
+  gap: 50px;
+  margin-top: 4px;
+  align-items: center;
+}
+#country-container > select {
+  justify-self: center;
+  justify-content: center;
+  border: none;
+  padding: 4px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 #login-main-form label {
   color: rgb(61, 61, 61);
@@ -126,30 +149,49 @@ main {
   justify-content: flex-start;
 }
 #login-main-form input {
-  /* background-color: red; */
   width: 100%;
   height: 30px;
   border-radius: 5px;
-  /* color: rgb(61, 61, 61);
-  font-weight: bold;
-  font-size: 15px;
-  justify-content: flex-start; */
 }
 #login-form-footer {
-  background-color: yellow;
+  margin-top: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+#login-submit-button,
+#login-cancel-button {
+  background-color: greenyellow;
+  border: none;
+  width: 80px;
+  height: 25px;
+  border-radius: 5px;
+  outline: none;
+  font-weight: bold;
+  color: white;
+}
+#login-submit-button {
+  background-color: rgb(70, 113, 0);
+}
+#login-cancel-button {
+  background-color: rgb(171, 0, 0);
+}
+#login-submit-button:hover,
+#login-cancel-button:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
 }
 #log-in-form {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
-  /* align-items: center; */
+  gap: 10px;
   border-radius: 0px 20px 20px 0px;
   background-color: rgb(186, 211, 255);
-}
-#login-form-footer {
-  background-color: yellow;
+  padding: 40px;
 }
 #email .new-book:hover,
 #log-in-button:hover {

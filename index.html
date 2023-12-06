@@ -40,7 +40,7 @@
       <div class="books-container"></div>
     </main>
     <!-- overlay popup -->
-    <!-- <div class="overlay" id="popup-overlay"></div> -->
+    <div class="overlay" id="popup-overlay"></div>
     <div class="popup" id="popup-window">
       <div id="logo-container">
         <img id="logo-image" src="./imgs/zbe.jpg" />
@@ -53,9 +53,9 @@
           <p>create an account</p>
         </div>
         <div id="login-main-form">
-          <div id="email-container">
-            <label for="email">Enter Email :</label>
-            <input type="email" id="email" name="email" />
+          <div id="fullName-container">
+            <label for="full-name">Full Name :</label>
+            <input type="text" id="full-name" name="full-name" />
           </div>
           <div id="country-container">
             <label for="country">Select Country : </label>
@@ -64,6 +64,10 @@
               <option value="Egypt">Egypt</option>
               <option value="Spain">Spain</option>
             </select>
+          </div>
+          <div id="email-container">
+            <label for="email">Enter Email :</label>
+            <input type="email" id="email" name="email" />
           </div>
           <div id="zip-container">
             <label for="zip">Zip Code :</label>
@@ -83,7 +87,8 @@
           </div>
         </div>
         <div id="login-form-footer">
-          <input id="login-form-submit" type="submit" value="Log in" />
+          <button type="submit" id="login-submit-button">Sign Up</button>
+          <button id="login-cancel-button">cancel</button>
         </div>
       </form>
     </div>

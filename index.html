@@ -24,7 +24,6 @@
       </a>
       <button id="log-in-button">Log in</button>
     </header>
-
     <main>
       <button class="new-book">+ Add Book</button>
       <form id="book-form" style="display: none">
@@ -43,8 +42,8 @@
     <div class="overlay" id="popup-overlay"></div>
     <div class="popup" id="popup-window">
       <div id="logo-container">
-        <img id="logo-image" src="./imgs/zbe.jpg" />
-        <p id="logo-para">Get Started!</p>
+        <img id="logo-image" src="./imgs/form-image.jpg" />
+        <p id="logo-para">Get Started</p>
       </div>
       <!-- log in form -->
       <form id="log-in-form" method="dialog">
@@ -55,23 +54,40 @@
         <div id="login-main-form">
           <div id="fullName-container">
             <label for="full-name">Full Name :</label>
-            <input type="text" id="full-name" name="full-name" />
+            <input
+              type="text"
+              id="full-name"
+              name="full-name"
+              placeholder="Enter Full Name."
+              pattern="[^\d]*"
+              minlength="4"
+              required
+            />
+            <span id="full-name-error"></span>
           </div>
           <div id="country-container">
             <label for="country">Select Country : </label>
-            <select id="country" name="country">
+            <select id="country" name="country" required>
               <option value="Maroc">Maroc</option>
               <option value="Egypt">Egypt</option>
-              <option value="Spain">Spain</option>
+              <option value="Germany">Germany</option>
             </select>
           </div>
           <div id="email-container">
             <label for="email">Enter Email :</label>
-            <input type="email" id="email" name="email" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="example@domain.com"
+              required
+            />
+            <span id="email-error"></span>
           </div>
           <div id="zip-container">
             <label for="zip">Zip Code :</label>
-            <input type="text" id="zip" name="zip" />
+            <input type="text" id="zip" name="zip" required />
+            <span id="zip-error"></span>
           </div>
           <div id="password-container">
             <label for="password">Enter Password : </label>

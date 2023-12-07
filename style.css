@@ -69,7 +69,12 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+    90deg,
+    rgba(69, 69, 69, 1) 0%,
+    rgba(33, 33, 33, 1) 53%,
+    rgba(24, 24, 24, 0.5) 100%
+  );
 }
 .popup {
   display: flex;
@@ -147,6 +152,7 @@ main {
   font-weight: bold;
   font-size: 12px;
   justify-content: flex-start;
+  /* font-family: "Courier New", Courier, monospace; */
 }
 #login-main-form input {
   width: 100%;
@@ -190,13 +196,29 @@ main {
   flex-direction: column;
   gap: 10px;
   border-radius: 0px 20px 20px 0px;
-  background-color: rgb(186, 211, 255);
+  background-color: rgb(216, 231, 255);
   padding: 40px;
 }
-#email .new-book:hover,
+.new-book:hover,
 #log-in-button:hover {
   background-color: #322f2f;
 }
+input:focus {
+  border: 1px dashed black;
+}
+/* This is the style of our error messages */
+.fullName-error-active,
+.email-error-active,
+.zip-error-active {
+  width: 100%;
+  padding: 0;
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border-radius: 0 0 5px 5px;
+  box-sizing: border-box;
+}
+/* book form styles */
 #book-form {
   width: 220px;
   height: 250px;

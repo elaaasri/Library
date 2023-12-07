@@ -130,7 +130,6 @@ const emailInput = document.getElementById("email");
 const emailError = document.getElementById("email-error");
 const zipInput = document.getElementById("zip");
 const zipError = document.getElementById("zip-error");
-
 // full name input event :
 // validate full name input:
 const validateFullName = function () {
@@ -177,68 +176,69 @@ const emailErrorMessage = function (errorMessage) {
 emailInput.addEventListener("input", validateEmail);
 // zip input event :
 const validateZip = function () {
+  console.log(zipInput.validity.patternMismatch);
   if (zipInput.validity.valid) {
+    console.log("valid");
     zipError.className = "";
     zipError.textContent = "";
     zipInput.style.border = "2px dashed green";
+  } else if (zipInput.validity.valueMissing) {
+    zipErroMessage("You need to enter zip code.");
+  } else if (zipInput.validity.patternMismatch) {
+    setPattern();
   } else {
     console.log("invalid");
-    checkZip();
+    zipError.className = "email-error-active";
+    zipInput.style.border = "2px dashed red";
+    // zipInput.textContent = errorMessage;
+    // checkZip();
+    // emailErrorMessage("must include '@' (eg: name@domain.com)");
   }
-  // else if (zipInput.validity.valueMissing) {
-  // zipErrorMessage("You need to enter a zip code.");
-  // checkZip();
-  // }
 };
-const checkZip = function () {
-  const countryInput = document.getElementById("country");
-  const allConstraints = {
-    Maroc: {
+const zipErroMessage = function (errorMessage) {
+  zipError.className = "email-error-active";
+  zipInput.style.border = "2px dashed red";
+  zipError.textContent = errorMessage;
+};
+const setPattern = function () {
+  const countryValue = document.getElementById("country").value;
+  const allConstraintsArray = [
+    {
+      name: "Maroc",
       pattern: "^d{5}$",
       errorMessage: "Morocco ZIP codes must have exactly 5 digits, e.g., 12345",
     },
-    Egypt: {
+    {
+      name: "Egypt",
       pattern: "^d{5}$",
       errorMessage: "Egypt ZIP codes must have exactly 5 digits, e.g., 12345",
     },
-    Germany: {
+    {
+      name: "Germany",
       pattern: "^(D-)?\\d{5}$",
       errorMessage:
         "Germany ZIPs must have exactly 5 digits: e.g. D-12345 or 12345",
     },
-  };
-  const allConstraintsArray = Object.entries(allConstraints);
+  ];
   const targetConstraint = allConstraintsArray.filter(
-    (constraint) => constraint[0] === countryInput.value
+    (constraint) => constraint.name === countryValue
   );
-  console.log({ targetConstraint });
-  console.log(targetConstraint.pattern);
-  console.log(targetConstraint.errorMessage);
-
-  // const targetConstraint = allConstraints.forEach((element) => {
-  //   console.log(element);
-  // });
-  // console.log(targetConstraint);
-  // const getTargetConstraint = allConstraints.forEach((element) => {
-  //   console.log(element);
-  // });
-  // const constraintsKeys = Object.keys(allConstraints);
-  // const getTargetConstraint = constraintsKeys.filter(
-  //   (zbe) => zbe === countryInput.value
-  // );
-  // console.log(getTargetConstraint);
-
-  // if (allConstraints.test(zipInput.value)) {
-  //   console.log("zbe");
-  // }
-
-  // const constraint = new RegExp(allConstraints[countryInput.value][0], "");
-  // console.log(constraint);
+  targetConstraint.forEach((constraint) => {
+    const name = constraint.name;
+    const pattern = constraint.pattern;
+    const errorMessage = constraint.errorMessage;
+    if (name === countryValue) {
+      zipInput.setAttribute("pattern", pattern);
+      zipErroMessage(errorMessage);
+    } else {
+      console.log("no");
+    }
+  });
 };
 // set zip error message and styles :
-const zipErrorMessage = function (errorMessage) {
-  zipError.className = "zip-error-active";
-  zipInput.style.border = "2px dashed red";
-  zipError.textContent = errorMessage;
-};
+// const zipErrorMessage = function (errorMessage) {
+//   zipError.className = "zip-error-active";
+//   zipInput.style.border = "2px dashed red";
+//   zipError.textContent = errorMessage;
+// };
 zipInput.addEventListener("input", validateZip);

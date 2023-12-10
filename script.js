@@ -6,16 +6,14 @@ const titleInput = document.querySelector("#title-input");
 const numOfPagesInput = document.querySelector("#number-input");
 const booksContainer = document.querySelector(".books-container");
 const checkbox = document.querySelector("#checkbox");
-
+// declaring variables :
 let myLibrary = [];
 let readStatusButton;
 let book;
-
 // display the form :
 newBookButton.addEventListener("click", () => {
   bookForm.style.cssText = "display; flex";
 });
-
 // book class :
 class Book {
   constructor(author, title, numberOfPages) {
@@ -41,7 +39,7 @@ class Book {
     bookDiv.remove();
   }
 }
-
+// create new book object :
 function addBookToLibrary() {
   const newBook = new Book(
     authorInput.value,
@@ -52,13 +50,12 @@ function addBookToLibrary() {
 
   return { newBook };
 }
-
+// book event :
 bookForm.addEventListener("submit", (event) => {
   // preventing default behavior of the form :
   event.preventDefault();
   showBook();
 });
-
 // func to show books :
 function showBook() {
   book = addBookToLibrary().newBook;
@@ -113,13 +110,15 @@ const popupOverlay = document.getElementById("popup-overlay");
 const popupWindow = document.getElementById("popup-window");
 const logInButton = document.getElementById("log-in-button");
 const loginCancelButton = document.getElementById("login-cancel-button");
+const countryInput = document.getElementById("country");
 const fullNameInput = document.getElementById("full-name");
 const fullNameError = document.querySelector("#full-name-error");
 const emailInput = document.getElementById("email");
 const emailError = document.getElementById("email-error");
 const zipInput = document.getElementById("zip");
 const zipError = document.getElementById("zip-error");
-const countryInput = document.getElementById("country");
+const passwordInput = document.getElementById("password");
+const passwordError = document.getElementById("password-error");
 // display form :
 const showForm = function () {
   popupOverlay.style.display = "flex";
@@ -136,7 +135,7 @@ loginCancelButton.addEventListener("click", hideForm);
 // validate full name input:
 const validateFullName = function () {
   if (fullNameInput.validity.valid) {
-    fullNameError.className = "";
+    fullNameError.id = "";
     fullNameInput.style.border = "2px dashed green";
     fullNameError.textContent = "";
   } else if (fullNameInput.validity.valueMissing) {
@@ -151,7 +150,7 @@ const validateFullName = function () {
 };
 // set full name error message and styles :
 const fullNameErrorMessage = function (errorMessage) {
-  fullNameError.className = "fullName-error-active";
+  fullNameError.id = "fullName-error-active";
   fullNameError.textContent = errorMessage;
   fullNameInput.style.border = "2px dashed red";
 };
@@ -160,7 +159,7 @@ fullNameInput.addEventListener("input", validateFullName);
 // validate email input:
 const validateEmail = function () {
   if (emailInput.validity.valid) {
-    emailError.className = "";
+    emailError.id = "";
     emailError.textContent = "";
     emailInput.style.border = "2px dashed green";
   } else if (emailInput.validity.valueMissing) {
@@ -171,7 +170,7 @@ const validateEmail = function () {
 };
 // set email error message and styles :
 const emailErrorMessage = function (errorMessage) {
-  emailError.className = "email-error-active";
+  emailError.id = "email-error-active";
   emailInput.style.border = "2px dashed red";
   emailError.textContent = errorMessage;
 };
@@ -180,18 +179,18 @@ emailInput.addEventListener("input", validateEmail);
 // validate zip input:
 const validateZip = function () {
   if (zipInput.validity.valid) {
-    zipError.className = "";
+    zipError.id = "";
     zipError.textContent = "";
     zipInput.style.border = "2px dashed green";
   } else if (zipInput.validity.valueMissing) {
     zipErrorMessage("You need to enter zip code.");
   } else if (zipInput.validity.patternMismatch) {
-    checkZipCode().setPatternAndErrorMessage();
+    checkZipCode().setZipPatternAndErrorMessage();
   }
 };
 // set zip error message and styles :
 const zipErrorMessage = function (errorMessage) {
-  zipError.className = "zip-error-active";
+  zipError.id = "zip-error-active";
   zipInput.style.border = "2px dashed red";
   zipError.textContent = errorMessage;
 };
@@ -199,6 +198,7 @@ zipInput.addEventListener("input", validateZip);
 // check zip code and return correct pattern and error message :
 const checkZipCode = function () {
   const countryValue = countryInput.value;
+  // set all constrains and their error messages :
   const allConstraintsArray = [
     {
       name: "Maroc",
@@ -223,19 +223,64 @@ const checkZipCode = function () {
         "France ZIPs must have exactly 5 digits: e.g. F-75012 or 75012",
     },
   ];
+  // get target constaint :
   const targetConstraint = allConstraintsArray.filter(
     (constraint) => constraint.name === countryValue
   );
-  const setPatternAndErrorMessage = function () {
-    targetConstraint.forEach((constraint) => {
-      const name = constraint.name;
-      const pattern = constraint.pattern;
-      const errorMessage = constraint.errorMessage;
+  // check zip code pattern :
+  const setZipPatternAndErrorMessage = function () {
+    targetConstraint.forEach((element) => {
+      const name = element.name;
+      const pattern = element.pattern;
+      const errorMessage = element.errorMessage;
       if (name === countryValue) {
         zipInput.setAttribute("pattern", pattern);
         zipErrorMessage(errorMessage);
       }
     });
   };
-  return { setPatternAndErrorMessage };
+  return { setZipPatternAndErrorMessage };
 };
+// password input event :
+// validate password input:
+const validatePassword = function () {
+  if (passwordInput.validity.valid) {
+    passwordError.id = "";
+    passwordError.textContent = "";
+    passwordInput.style.border = "2px dashed green";
+  } else if (passwordInput.validity.valueMissing) {
+    passwordErrorMessage("You need to enter a password.");
+  } else if (passwordInput.validity.tooShort) {
+    passwordErrorMessage(
+      `password should be at least ${passwordInput.minLength} characters; you entered ${passwordInput.value.length}.`
+    );
+  } else if (passwordInput.validity.patternMismatch) {
+    checkPassword().setPasswordPatternAndErrorMessage();
+  }
+};
+// set and get password pattern :
+const checkPassword = function () {
+  const passwordValue = passwordInput.value;
+  // password pattern that requires at least one number, one upper case and one special character :
+  const passwordPattern =
+    /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])/;
+  // checks password pattern :
+  const setPasswordPatternAndErrorMessage = function () {
+    if (passwordPattern.test(passwordValue)) {
+      passwordError.id = "";
+      passwordError.textContent = "";
+      passwordInput.style.border = "2px dashed green";
+    } else {
+      passwordErrorMessage(
+        "Password must contain at least one number, one uppercase letter, and one special character."
+      );
+    }
+  };
+  return { setPasswordPatternAndErrorMessage };
+};
+const passwordErrorMessage = function (errorMessage) {
+  passwordError.id = "zip-error-active";
+  passwordInput.style.border = "2px dashed red";
+  passwordError.textContent = errorMessage;
+};
+passwordInput.addEventListener("input", validatePassword);

@@ -87,12 +87,28 @@
           </div>
           <div id="zip-container">
             <label for="zip">Zip Code :</label>
-            <input type="text" id="zip" name="zip" pattern="" required />
+            <input
+              type="text"
+              id="zip"
+              name="zip"
+              placeholder="Enter Zip Code."
+              pattern=""
+              required
+            />
             <span id="zip-error"></span>
           </div>
           <div id="password-container">
             <label for="password">Enter Password : </label>
-            <input type="password" id="password" name="password" />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              pattern=""
+              placeholder="Password123!@"
+              minlength="8"
+              required
+            />
+            <span id="password-error"></span>
           </div>
           <div id="password-confirm-container">
             <label for="password-confirm">Confirm Password : </label>

@@ -119,6 +119,8 @@ const zipInput = document.getElementById("zip");
 const zipError = document.getElementById("zip-error");
 const passwordInput = document.getElementById("password");
 const passwordError = document.getElementById("password-error");
+const confirmPasswordInput = document.getElementById("password-confirm");
+const confirmPasswordError = document.getElementById("confirm-password-error");
 // display form :
 const showForm = function () {
   popupOverlay.style.display = "flex";
@@ -154,6 +156,7 @@ const fullNameErrorMessage = function (errorMessage) {
   fullNameError.textContent = errorMessage;
   fullNameInput.style.border = "2px dashed red";
 };
+// full name input event :
 fullNameInput.addEventListener("input", validateFullName);
 // email input event :
 // validate email input:
@@ -174,6 +177,7 @@ const emailErrorMessage = function (errorMessage) {
   emailInput.style.border = "2px dashed red";
   emailError.textContent = errorMessage;
 };
+// email input event :
 emailInput.addEventListener("input", validateEmail);
 // zip input event :
 // validate zip input:
@@ -194,6 +198,7 @@ const zipErrorMessage = function (errorMessage) {
   zipInput.style.border = "2px dashed red";
   zipError.textContent = errorMessage;
 };
+// zip code event :
 zipInput.addEventListener("input", validateZip);
 // check zip code and return correct pattern and error message :
 const checkZipCode = function () {
@@ -283,4 +288,33 @@ const passwordErrorMessage = function (errorMessage) {
   passwordInput.style.border = "2px dashed red";
   passwordError.textContent = errorMessage;
 };
+// password event :
 passwordInput.addEventListener("input", validatePassword);
+// confirm password input event :
+// validate confirm password input:
+const validateConfirmPassword = function () {
+  const passwordValue = passwordInput.value;
+  const confirmPasswordValue = confirmPasswordInput.value;
+  if (
+    passwordValue === confirmPasswordValue &&
+    confirmPasswordInput.validity.valid
+  ) {
+    confirmPasswordError.id = "";
+    confirmPasswordError.textContent = "";
+    confirmPasswordInput.style.border = "2px dashed green";
+  } else if (confirmPasswordInput.validity.valueMissing) {
+    confirmPasswordErrorMessage("u must enter the same password.");
+  } else {
+    confirmPasswordErrorMessage(
+      "Password confirmation must be identical to your password."
+    );
+  }
+};
+// set confirm password error message and styles :
+const confirmPasswordErrorMessage = function (errorMessage) {
+  confirmPasswordError.id = "zip-error-active";
+  confirmPasswordInput.style.border = "2px dashed red";
+  confirmPasswordError.textContent = errorMessage;
+};
+// confirm password event :
+confirmPasswordInput.addEventListener("input", validateConfirmPassword);

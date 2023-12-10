@@ -212,12 +212,13 @@ input:focus {
 #zip-error-active,
 #password-error-active {
   width: 100%;
+  font-size: 70%;
   padding: 0;
-  font-size: 80%;
+  margin: 0;
   color: white;
   background-color: #900;
-  border-radius: 0 0 5px 5px;
-  box-sizing: border-box;
+  border-radius: 0 0 8px 8px;
+  padding-left: 10px;
 }
 /* book form styles */
 #book-form {

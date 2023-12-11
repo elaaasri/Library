@@ -244,7 +244,7 @@ const validatePassword = function () {
     passwordErrorMessage("You need to enter a password.");
   } else {
     passwordErrorMessage(
-      "Password must be at least eight characters, one uppercase letter, one lowercase letter, one number and one special character:"
+      "Password must be at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character:"
     );
   }
 };
@@ -262,8 +262,8 @@ const validateConfirmPassword = function () {
   const passwordValue = passwordInput.value;
   const confirmPasswordValue = confirmPasswordInput.value;
   if (
-    passwordValue === confirmPasswordValue &&
-    confirmPasswordInput.validity.valid
+    confirmPasswordInput.validity.valid &&
+    passwordValue === confirmPasswordValue
   ) {
     confirmPasswordError.id = "";
     confirmPasswordError.textContent = "";
@@ -284,7 +284,6 @@ const confirmPasswordErrorMessage = function (errorMessage) {
 };
 // confirm password event :
 confirmPasswordInput.addEventListener("input", validateConfirmPassword);
-// #########################
 const logInForm = document.getElementById("log-in-form");
 const loginSubmitButton = document.getElementById("login-submit-button");
 // display form :
@@ -301,4 +300,22 @@ const hideForm = function (event) {
 };
 // log in cancel event :
 loginCancelButton.addEventListener("click", hideForm);
-// working on fix password pattern validation :
+// checks all inputs validation :
+const checkAllInputsValidity = function () {
+  const allInputs = [
+    fullNameInput,
+    countryInput,
+    emailInput,
+    zipInput,
+    passwordInput,
+    confirmPasswordInput,
+  ];
+  // get all inputs validity :
+  const isAllInputsValid = allInputs.every((input) => input.checkValidity());
+  if (isAllInputsValid === true) {
+    alert("congratulations!");
+    return;
+  }
+};
+// log in submit event :
+loginSubmitButton.addEventListener("click", checkAllInputsValidity);

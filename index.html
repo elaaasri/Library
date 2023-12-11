@@ -67,7 +67,7 @@
           </div>
           <div id="country-container">
             <label for="country">Select Country : </label>
-            <select id="country" name="country">
+            <select id="country" name="country" required>
               <option value="Maroc">Maroc</option>
               <option value="Egypt">Egypt</option>
               <option value="Germany">Germany</option>
@@ -103,9 +103,8 @@
               type="password"
               id="password"
               name="password"
-              pattern=""
               placeholder="Password123!@"
-              minlength="8"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
               required
             />
             <span id="password-error"></span>
@@ -116,6 +115,7 @@
               type="password"
               id="password-confirm"
               name="password-confirm"
+              placeholder="Confirm Password"
               required
             />
             <span id="confirm-password-error"></span>

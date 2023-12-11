@@ -105,7 +105,6 @@ function checkboxStatusCheck() {
 }
 
 // ######### sign up form validation : #########
-// const loginSubmitButton = document.getElementById("login-submit-button");
 const popupOverlay = document.getElementById("popup-overlay");
 const popupWindow = document.getElementById("popup-window");
 const logInButton = document.getElementById("log-in-button");
@@ -121,18 +120,6 @@ const passwordInput = document.getElementById("password");
 const passwordError = document.getElementById("password-error");
 const confirmPasswordInput = document.getElementById("password-confirm");
 const confirmPasswordError = document.getElementById("confirm-password-error");
-// display form :
-const showForm = function () {
-  popupOverlay.style.display = "flex";
-  popupWindow.style.display = "flex";
-};
-logInButton.addEventListener("click", showForm);
-// hide form :
-const hideForm = function () {
-  popupOverlay.style.display = "none";
-  popupWindow.style.display = "none";
-};
-loginCancelButton.addEventListener("click", hideForm);
 // full name input event :
 // validate full name input:
 const validateFullName = function () {
@@ -255,34 +242,13 @@ const validatePassword = function () {
     passwordInput.style.border = "2px dashed green";
   } else if (passwordInput.validity.valueMissing) {
     passwordErrorMessage("You need to enter a password.");
-  } else if (passwordInput.validity.tooShort) {
+  } else {
     passwordErrorMessage(
-      `password should be at least ${passwordInput.minLength} characters; you entered ${passwordInput.value.length}.`
+      "Password must be at least eight characters, one uppercase letter, one lowercase letter, one number and one special character:"
     );
-  } else if (passwordInput.validity.patternMismatch) {
-    checkPassword().setPasswordPatternAndErrorMessage();
   }
 };
-// set and get password pattern :
-const checkPassword = function () {
-  const passwordValue = passwordInput.value;
-  // password pattern that requires at least one number, one upper case and one special character :
-  const passwordPattern =
-    /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])/;
-  // checks password pattern :
-  const setPasswordPatternAndErrorMessage = function () {
-    if (passwordPattern.test(passwordValue)) {
-      passwordError.id = "";
-      passwordError.textContent = "";
-      passwordInput.style.border = "2px dashed green";
-    } else {
-      passwordErrorMessage(
-        "Password must contain at least one number, one uppercase letter, and one special character."
-      );
-    }
-  };
-  return { setPasswordPatternAndErrorMessage };
-};
+// set password error message and styles :
 const passwordErrorMessage = function (errorMessage) {
   passwordError.id = "zip-error-active";
   passwordInput.style.border = "2px dashed red";
@@ -318,3 +284,21 @@ const confirmPasswordErrorMessage = function (errorMessage) {
 };
 // confirm password event :
 confirmPasswordInput.addEventListener("input", validateConfirmPassword);
+// #########################
+const logInForm = document.getElementById("log-in-form");
+const loginSubmitButton = document.getElementById("login-submit-button");
+// display form :
+const showForm = function () {
+  popupOverlay.style.display = "flex";
+  popupWindow.style.display = "flex";
+};
+logInButton.addEventListener("click", showForm);
+// hide form :
+const hideForm = function (event) {
+  event.preventDefault();
+  popupOverlay.style.display = "none";
+  popupWindow.style.display = "none";
+};
+// log in cancel event :
+loginCancelButton.addEventListener("click", hideForm);
+// working on fix password pattern validation :

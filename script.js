@@ -47,7 +47,6 @@ function addBookToLibrary() {
     numOfPagesInput.value
   );
   myLibrary.push(newBook);
-
   return { newBook };
 }
 // book event :
@@ -105,6 +104,8 @@ function checkboxStatusCheck() {
 }
 
 // ######### sign up form validation : #########
+const logInForm = document.getElementById("log-in-form");
+const loginSubmitButton = document.getElementById("login-submit-button");
 const popupOverlay = document.getElementById("popup-overlay");
 const popupWindow = document.getElementById("popup-window");
 const logInButton = document.getElementById("log-in-button");
@@ -284,8 +285,6 @@ const confirmPasswordErrorMessage = function (errorMessage) {
 };
 // confirm password event :
 confirmPasswordInput.addEventListener("input", validateConfirmPassword);
-const logInForm = document.getElementById("log-in-form");
-const loginSubmitButton = document.getElementById("login-submit-button");
 // display form :
 const showForm = function () {
   popupOverlay.style.display = "flex";
@@ -301,21 +300,18 @@ const hideForm = function (event) {
 // log in cancel event :
 loginCancelButton.addEventListener("click", hideForm);
 // checks all inputs validation :
-const checkAllInputsValidity = function () {
-  const allInputs = [
-    fullNameInput,
-    countryInput,
-    emailInput,
-    zipInput,
-    passwordInput,
-    confirmPasswordInput,
-  ];
-  // get all inputs validity :
-  const isAllInputsValid = allInputs.every((input) => input.checkValidity());
-  if (isAllInputsValid === true) {
+const checkLogInFormValidity = function () {
+  const allInputs = logInForm.querySelectorAll("input");
+  if (logInForm.checkValidity()) {
     alert("congratulations!");
+    logInForm.reset();
+    allInputs.forEach((input) => {
+      input.style.border = "none";
+    });
     return;
+  } else {
+    alert("not valid!");
   }
 };
 // log in submit event :
-loginSubmitButton.addEventListener("click", checkAllInputsValidity);
+loginSubmitButton.addEventListener("click", checkLogInFormValidity);

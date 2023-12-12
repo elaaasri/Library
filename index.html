@@ -30,8 +30,8 @@
         <input id="author-input" type="text" placeholder="Author :" required />
         <input id="title-input" type="text" placeholder="Title :" required />
         <input id="number-input" type="number" placeholder="Pages :" required />
-        <label for="checkbox"
-          >Have u read it?
+        <label id="checkbox-container" for="checkbox"
+          >Have u read it
           <input id="checkbox" type="checkbox" />
         </label>
         <input id="submit" type="submit" value="Submit" />
@@ -39,8 +39,8 @@
       <div class="books-container"></div>
     </main>
     <!-- overlay popup -->
-    <div class="overlay" id="popup-overlay"></div>
-    <div class="popup" id="popup-window">
+    <div class="overlay" id="popup-overlay" style="display: none"></div>
+    <div class="popup" id="popup-window" style="display: none">
       <div id="logo-container">
         <img id="logo-image" src="./imgs/form-image.jpg" />
         <p id="logo-para">Get Started</p>

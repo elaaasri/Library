@@ -113,8 +113,6 @@ main {
   font-family: "Poppins", sans-serif;
   font-weight: bold;
 }
-#login-header-form > h2 {
-}
 #login-header-form > p {
   font-size: 12px;
   color: grey;
@@ -206,7 +204,7 @@ main {
 input:focus {
   border: 1px dashed black;
 }
-/* This is the style of our error messages */
+/* error messages styles */
 #fullName-error-active,
 #email-error-active,
 #zip-error-active,
@@ -226,10 +224,10 @@ input:focus {
   height: 250px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-direction: column;
   background-color: #ffffff9b;
-  border-radius: 15px;
+  border-radius: 10px;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 input {
@@ -237,8 +235,11 @@ input {
   border: none;
   border-radius: 15px;
   padding-left: 10px;
-  height: 18%;
   font-weight: bold;
+}
+#book-form input {
+  height: 35px;
+  border-radius: 10px;
 }
 form > #submit {
   width: 50%;
@@ -260,6 +261,9 @@ label {
 input[type="checkbox"] {
   width: 16px;
   height: 16px;
+}
+#checkbox-container {
+  font-family: "Poppins", sans-serif;
 }
 /* new book styles */
 .show-book {

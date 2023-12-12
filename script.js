@@ -245,7 +245,7 @@ const validatePassword = function () {
     passwordErrorMessage("You need to enter a password.");
   } else {
     passwordErrorMessage(
-      "Password must be at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character:"
+      "Password must be at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character including (@$!%*#?&.'+,:;<=>^_`~)."
     );
   }
 };
@@ -309,9 +309,10 @@ const checkLogInFormValidity = function () {
       input.style.border = "none";
     });
     return;
-  } else {
-    alert("not valid!");
-  }
+  } else alert("not valid!");
 };
 // log in submit event :
 loginSubmitButton.addEventListener("click", checkLogInFormValidity);
+// pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$";
+// pattern =
+// "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&#_k])[A-Za-zd@$!%*?&#_k]{8,}$";

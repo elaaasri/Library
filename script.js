@@ -245,7 +245,7 @@ const validatePassword = function () {
     passwordErrorMessage("You need to enter a password.");
   } else {
     passwordErrorMessage(
-      "Password must be at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character including @$!%*#?&.'+,:;<=>^_`~"
+      "Password must be at least 8 characters, one uppercase or lowercase letter, one number and one special character including @$!%*#?&.'+,:;<=>^_`~"
     );
   }
 };
